@@ -1,0 +1,23 @@
+---
+- name: working with apache
+  hosts: server1
+  tasks:
+    - name: Install the latest version of Apache
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Enable service httpd and ensure it is not masked
+      systemd:
+        name: httpd
+        enabled: true
+    - name: Place file index.html in the remote servers
+      template:
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+    - name: Make sure a service unit is running at boot time
+      systemd:
+        name: httpd
+        state: restarted

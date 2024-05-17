@@ -1,0 +1,18 @@
+---
+- name: working with ansible playbooks
+  hosts: all
+  vars:
+    var1: 1000
+    str1: "devops"
+  vars_files:
+    - myvars.yaml
+  tasks:
+    - name: working with vars section
+      command: echo "var1 value is {{ var1 }} & str1 value is {{ str1 }}"
+    - name: working with vars_files section
+      command: echo "str2 value is {{ str2 }} && var2 value is {{ var2}}"
+    - name: working with host_vars section
+      command: echo "apache_version number is {{ apache_version }}"
+    - name: working with group_vars 
+      command: echo "tomcat_varsion is {{ tomcat_version }}"
+

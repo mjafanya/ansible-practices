@@ -1,0 +1,21 @@
+---
+- name: working with loops
+  hosts: all
+  vars:
+    dict1:
+      "course": "aws & devops"
+      "subject": "ansible"
+      "fut_sub": "git&github"
+  tasks:
+    - name: working with with_items
+      command: echo "my values are {{ item }}"
+      with_items : [10,20,30,40]
+      tags: "t1"
+    - name: working with with_dict
+      command: echo "my key is {{ item.key }},my value is {{ item.value }}"
+      with_dict: "{{ dict1 }}"
+      tags: "t2"
+    - name: working with sequences
+      command: echo "my number  is {{ item }}"
+      with_sequence: start=1 end=5
+      tags: "t3"

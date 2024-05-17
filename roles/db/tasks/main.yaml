@@ -1,0 +1,26 @@
+---
+- name: Install the latest version of Apache
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: ["MySQL-python","mariadb-server"]
+
+- name: Enable service mariadb at boot level
+  systemd:
+    name: mariadb
+    enabled: true
+- name: Restart mariadb software
+  systemd:
+    name: mariadb
+    state: restarted
+- name: Create a new database with name dvsdevops
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
+- name: Create database user with name admin & password
+  mysql_user:
+    name: "{{ db_user }}"
+    host: '%'
+    password: "{{ db_pass }}"
+    priv: '*.*:ALL'
+    state: present

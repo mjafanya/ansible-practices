@@ -1,0 +1,31 @@
+---
+- name: Installing pre req softwares
+  command: sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+
+- name: installing apache
+  yum:
+    name: httpd
+    state: present
+
+- name: enable apache
+  systemd:
+    name: httpd
+    enabled: yes
+
+- name: Download wordpress application
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/html/
+    remote_src: yes
+    owner: apache
+    group: apache
+    extra_opts: [--strip-components=1]
+  notify: restart apache
+
+- name: Send the configuration file
+  template:
+    src: wp-config.php
+    dest: /var/www/html/wp-config.php
+    owner: apache
+    group: apache
+  notify: restart apache

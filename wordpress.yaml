@@ -1,0 +1,14 @@
+---
+- name: installing mariadb
+  hosts: server2DB
+  vars_files:
+    - mydbcred.yaml
+  roles:
+     - db
+
+- name: installing wordpress
+  hosts: app 
+  vars_files:
+    - mydbcred.yaml
+  roles:
+    - app      

@@ -1,0 +1,19 @@
+---
+- name: working with conditions
+  hosts: server1
+  vars:
+    myval: 9
+  tasks:
+    - name: working with and condition
+      command: echo "Hi I am and operator"
+      when: ansible_distribution == "Amazon" and ansible_os_family == "Redhat"
+    - name: working with or condition
+      command: echo "Hi I am or operator"
+      when: ansible_distribution == "Amazon" or ansible_os_family == "Redhat"
+    - name: working with relational operator
+      command: echo "my value is greater than 10"
+      when: myval < 10
+
+    - name: working with is defined
+      command: echo "batchno is defined {{ batchno }}"
+      when: batchno is defined    

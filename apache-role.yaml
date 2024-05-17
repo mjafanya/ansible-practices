@@ -1,0 +1,6 @@
+---
+- name: installing apache
+  hosts: server2
+  roles:
+    - apache
+    

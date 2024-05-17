@@ -1,0 +1,6 @@
+[app]
+server1app
+app
+
+[db]
+server2DB

@@ -1,0 +1,8 @@
+---
+- name: working with special cases
+  hosts: all
+  vars_files:
+    - mydbpass.yaml
+  tasks:
+    - name: working with delegate_to
+      command: echo "Hi username is {{ username }},password is {{ password }}"
