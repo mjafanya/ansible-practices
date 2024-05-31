@@ -10,7 +10,7 @@ service_account: ec2-user
 nexusserverip: 172.31.28.79
 nexus_repo: java-app1
 # dotnet cicd variable
-nexus_appname: myapp1
+nexus_appname: java-app1
 
 ##### Dotnet variables
 app_name: "dvsazbatch1"
